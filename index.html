@@ -6,15 +6,16 @@
     <title>Portfolio | Constant Learning & Growth</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --accent-neon: #0ea5e9;
+            --bg-dark: #0b0713;
+            --card-bg: #160f24;
+            --pink-accent: #ff4d94;
+            --yellow-accent: #ffcc00;
             --text-light: #f8fafc;
-            --text-muted: #94a3b8;
+            --text-muted: #b4a9c7;
         }
 
         html {
@@ -22,32 +23,40 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-light);
             overflow-x: hidden;
         }
 
+        h1, h2, h3, h4, .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
         /* Navbar Customization */
         .navbar {
-            background-color: rgba(15, 23, 42, 0.9) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(11, 7, 19, 0.85) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 77, 148, 0.1);
         }
 
         .navbar-brand {
             font-weight: 700;
-            color: var(--accent-neon) !important;
+            background: linear-gradient(135deg, var(--pink-accent), var(--yellow-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
         }
 
         .nav-link {
             color: var(--text-light) !important;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--accent-neon) !important;
+            color: var(--pink-accent) !important;
+            transform: translateY(-1px);
         }
 
         /* Hero Section */
@@ -56,34 +65,99 @@
             display: flex;
             align-items: center;
             padding-top: 80px;
+            background: radial-gradient(circle at 90% 10%, rgba(255, 77, 148, 0.1), transparent 40%),
+                        radial-gradient(circle at 10% 90%, rgba(255, 204, 0, 0.05), transparent 40%);
         }
 
-        .accent-text {
-            color: var(--accent-neon);
+        .gradient-text {
+            background: linear-gradient(135deg, var(--pink-accent) 30%, var(--yellow-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* Cards & Components */
+        /* Custom Buttons with Glow Hover */
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--pink-accent), var(--yellow-accent));
+            color: #000 !important;
+            font-weight: 600;
+            border: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(255, 77, 148, 0.2);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 77, 148, 0.4);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--pink-accent);
+            color: var(--pink-accent);
+            font-weight: 600;
+            transition: all 0.4s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: rgba(255, 77, 148, 0.1);
+            color: var(--yellow-accent);
+            border-color: var(--yellow-accent);
+            transform: translateY(-3px);
+        }
+
+        /* Cards & Enhanced Hover Effects */
         .custom-card {
             background-color: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 77, 148, 0.08);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255, 77, 148, 0.15), rgba(255, 204, 0, 0.15));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
         }
 
         .custom-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 204, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(255, 77, 148, 0.15);
         }
 
+        .custom-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Interactive Skill Badges */
         .badge-skill {
-            background-color: rgba(14, 165, 233, 0.1);
-            color: var(--accent-neon);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            padding: 8px 16px;
+            background-color: rgba(255, 77, 148, 0.06);
+            color: var(--pink-accent);
+            border: 1px solid rgba(255, 77, 148, 0.15);
+            padding: 8px 18px;
             font-weight: 500;
-            border-radius: 20px;
-            margin: 5px;
+            border-radius: 30px;
+            margin: 6px;
             display: inline-block;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .badge-skill:hover {
+            background: linear-gradient(135deg, var(--pink-accent), var(--yellow-accent));
+            color: #000;
+            border-color: transparent;
+            transform: scale(1.08) rotate(-1deg);
         }
 
         /* Section Styling */
@@ -101,29 +175,49 @@
         .section-title::after {
             content: '';
             position: absolute;
-            width: 50%;
-            height: 3px;
-            background-color: var(--accent-neon);
-            bottom: -10px;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--pink-accent), var(--yellow-accent));
+            bottom: -12px;
             left: 0;
-            border-radius: 2px;
+            border-radius: 4px;
+        }
+
+        /* Input Fields Configuration */
+        .form-control {
+            background-color: #0d0916 !important;
+            border: 1px solid rgba(255, 77, 148, 0.15) !important;
+            color: var(--text-light) !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--yellow-accent) !important;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.2) !important;
         }
 
         /* Footer & Socials */
         footer {
-            background-color: #0b0f19;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #06040a;
+            border-top: 1px solid rgba(255, 77, 148, 0.08);
         }
 
         .social-icon {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-muted);
-            transition: color 0.3s;
-            margin: 0 10px;
+            transition: all 0.3s ease;
+            margin: 0 12px;
+            display: inline-block;
         }
 
         .social-icon:hover {
-            color: var(--accent-neon);
+            color: var(--pink-accent);
+            transform: translateY(-4px) scale(1.1);
+        }
+        
+        .social-icon.insta:hover {
+            color: #fccc54; /* warm yellow sunset hint */
         }
     </style>
 </head>
@@ -151,46 +245,48 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7">
-                    <p class="text-uppercase tracking-wider accent-text mb-2 fw-semibold">Welcome to my space</p>
-                    <h1 class="display-3 fw-bold mb-3">Hi, I'm <span class="accent-text">Arpita</span></h1>
-                    <h2 class="h3 text-muted mb-4">Exploring the Intersection of Tech, AI, and Design</h2>
-                    <p class="lead text-muted mb-5" style="max-width: 600px;">
+                    <p class="text-uppercase tracking-wider fw-bold mb-2" style="color: var(--pink-accent); letter-spacing: 2px;">Welcome to my space</p>
+                    <h1 class="display-3 fw-bold mb-3">Hi, I'm <span class="gradient-text">Arpita</span></h1>
+                    <h2 class="h3 mb-4" style="color: var(--yellow-accent);">Exploring the Intersection of Tech, AI, and Design</h2>
+                    <p class="lead text-muted mb-5" style="max-width: 600px; color: var(--text-muted) !important;">
                         An engineering student focused on building innovative solutions, continuous self-improvement, and turning complex problems into clean, functional designs.
                     </p>
                     <div>
-                        <a href="#projects" class="btn btn-outline-info btn-lg px-4 me-3">View My Work</a>
-                        <a href="#contact" class="btn btn-info btn-lg px-4 text-dark fw-semibold" style="background-color: var(--accent-neon);">Let's Connect</a>
+                        <a href="#projects" class="btn btn-outline-custom btn-lg px-4 me-3">View My Work</a>
+                        <a href="#contact" class="btn btn-gradient btn-lg px-4 text-dark fw-semibold">Let's Connect</a>
                     </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block text-center">
-                    <i class="fa-solid fa-laptop-code display-1 accent-text" style="font-size: 12rem; opacity: 0.8;"></i>
+                    <i class="fa-solid fa-laptop-code display-1" style="font-size: 11rem; background: linear-gradient(135deg, var(--pink-accent), var(--yellow-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.85;"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="bg-opacity-25 bg-secondary">
+    <section id="about" style="background-color: rgba(22, 15, 36, 0.4);">
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="row g-4 align-items-center">
                 <div class="col-md-6">
-                    <p class="lead text-light">Driven by curiosity and a passion for structural thinking.</p>
-                    <p class="text-muted">
+                    <p class="lead" style="color: var(--yellow-accent);">Driven by curiosity and a passion for structural thinking.</p>
+                    <p style="color: var(--text-muted);">
                         Currently pursuing my undergraduate degree in Computer Science with a core focus on Artificial Intelligence and Machine Learning. Beyond academic frameworks, I find balance through creative writing, digital illustration, and physical fitness—relying on structure and discipline to keep my engineering perspectives sharp.
                     </p>
-                    <p class="text-muted">
+                    <p style="color: var(--text-muted);">
                         Whether collaborating on technical modules, designing intuitive interface prototypes, or executing structural strategies, my baseline goal remains standard: constant learning and iterative self-improvement.
                     </p>
                 </div>
                 <div class="col-md-6">
                     <div class="p-4 custom-card">
-                        <h4 class="accent-text mb-3"><i class="fa-solid fa-graduation-cap me-2"></i> Quick Background</h4>
-                        <ul class="list-unstyled text-muted">
-                            <li class="mb-2"><strong class="text-white">Education:</strong> B.Tech in CSE (Spec. AI & ML)</li>
-                            <li class="mb-2"><strong class="text-white">Core Focus:</strong> Software Fundamentals & Data Systems</li>
-                            <li class="mb-2"><strong class="text-white">Design Stack:</strong> UI/UX Prototyping & Visual Elements</li>
-                            <li class="mb-2"><strong class="text-white">Leadership Roles:</strong> Public Speaking & Team Management</li>
-                        </ul>
+                        <div class="card-body">
+                            <h4 class="mb-3" style="color: var(--pink-accent);"><i class="fa-solid fa-graduation-cap me-2"></i> Quick Background</h4>
+                            <ul class="list-unstyled" style="color: var(--text-muted); line-height: 2;">
+                                <li class="mb-2"><strong class="text-white">Education:</strong> B.Tech in CSE (Spec. AI & ML)</li>
+                                <li class="mb-2"><strong class="text-white">Core Focus:</strong> Software Fundamentals & Data Systems</li>
+                                <li class="mb-2"><strong class="text-white">Design Stack:</strong> UI/UX Prototyping & Visual Elements</li>
+                                <li class="mb-2"><strong class="text-white">Leadership Roles:</strong> Public Speaking & Team Management</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,31 +299,37 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="p-4 custom-card h-100">
-                        <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-code accent-text me-2"></i> Languages</h3>
-                        <div class="d-flex flex-wrap">
-                            <span class="badge-skill">C / C++</span>
-                            <span class="badge-skill">Python</span>
-                            <span class="badge-skill">HTML5 / CSS3</span>
+                        <div class="card-body">
+                            <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-code me-2" style="color: var(--pink-accent);"></i> Languages</h3>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge-skill">C / C++</span>
+                                <span class="badge-skill">Python</span>
+                                <span class="badge-skill">HTML5 / CSS3</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 custom-card h-100">
-                        <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-brain accent-text me-2"></i> Core Domains</h3>
-                        <div class="d-flex flex-wrap">
-                            <span class="badge-skill">Data Structures (DSA)</span>
-                            <span class="badge-skill">Operating Systems</span>
-                            <span class="badge-skill">Intro to ML</span>
+                        <div class="card-body">
+                            <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-brain me-2" style="color: var(--pink-accent);"></i> Core Domains</h3>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge-skill">Data Structures (DSA)</span>
+                                <span class="badge-skill">Operating Systems</span>
+                                <span class="badge-skill">Intro to ML</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="p-4 custom-card h-100">
-                        <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-palette accent-text me-2"></i> Creative & Design</h3>
-                        <div class="d-flex flex-wrap">
-                            <span class="badge-skill">UI/UX (Figma)</span>
-                            <span class="badge-skill">Canva Workspace</span>
-                            <span class="badge-skill">Digital Doodle Art</span>
+                        <div class="card-body">
+                            <h3 class="h5 mb-3 text-white"><i class="fa-solid fa-palette me-2" style="color: var(--pink-accent);"></i> Creative & Design</h3>
+                            <div class="d-flex flex-wrap">
+                                <span class="badge-skill">UI/UX (Figma)</span>
+                                <span class="badge-skill">Canva Workspace</span>
+                                <span class="badge-skill">Digital Doodle Art</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -235,7 +337,7 @@
         </div>
     </section>
 
-    <section id="projects" class="bg-opacity-25 bg-secondary">
+    <section id="projects" style="background-color: rgba(22, 15, 36, 0.4);">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="row g-4">
@@ -244,16 +346,16 @@
                     <div class="card custom-card h-100 text-white">
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <i class="fa-solid fa-robot accent-text fs-3"></i>
+                                <i class="fa-solid fa-robot fs-3" style="color: var(--pink-accent);"></i>
                                 <a href="#" class="text-muted"><i class="fa-brands fa-github fs-4"></i></a>
                             </div>
                             <h4 class="card-title h5 text-white fw-bold">Lava-Strider Exploration Robot</h4>
-                            <p class="card-text text-muted flex-grow-1 small">
+                            <p class="card-text flex-grow-1 small" style="color: var(--text-muted);">
                                 Structural design and hardware sensor mapping for an extreme-environment exploration unit built for volcanic vents and extremophile tracking.
                             </p>
                             <div class="mt-3">
-                                <span class="badge bg-dark text-info me-1 small">Hardware Design</span>
-                                <span class="badge bg-dark text-info small">Sensors</span>
+                                <span class="badge bg-dark text-white me-1 small" style="border: 1px solid rgba(255,255,255,0.1);">Hardware Design</span>
+                                <span class="badge bg-dark text-white small" style="border: 1px solid rgba(255,255,255,0.1);">Sensors</span>
                             </div>
                         </div>
                     </div>
@@ -263,16 +365,16 @@
                     <div class="card custom-card h-100 text-white">
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <i class="fa-solid fa-network-wired accent-text fs-3"></i>
+                                <i class="fa-solid fa-network-wired fs-3" style="color: var(--pink-accent);"></i>
                                 <a href="#" class="text-muted"><i class="fa-brands fa-github fs-4"></i></a>
                             </div>
                             <h4 class="card-title h5 text-white fw-bold">Algorithmic Data Parsers</h4>
-                            <p class="card-text text-muted flex-grow-1 small">
+                            <p class="card-text flex-grow-1 small" style="color: var(--text-muted);">
                                 Optimized custom implementations of core Data Structures in C++ designed to streamline memory indexing and search operations.
                             </p>
                             <div class="mt-3">
-                                <span class="badge bg-dark text-info me-1 small">C++</span>
-                                <span class="badge bg-dark text-info small">DSA</span>
+                                <span class="badge bg-dark text-white me-1 small" style="border: 1px solid rgba(255,255,255,0.1);">C++</span>
+                                <span class="badge bg-dark text-white small" style="border: 1px solid rgba(255,255,255,0.1);">DSA</span>
                             </div>
                         </div>
                     </div>
@@ -282,16 +384,16 @@
                     <div class="card custom-card h-100 text-white">
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <i class="fa-solid fa-compass-drafting accent-text fs-3"></i>
+                                <i class="fa-solid fa-compass-drafting fs-3" style="color: var(--pink-accent);"></i>
                                 <a href="#" class="text-muted"><i class="fa-solid fa-arrow-up-right-from-square fs-4"></i></a>
                             </div>
                             <h4 class="card-title h5 text-white fw-bold">Interactive UI Prototypes</h4>
-                            <p class="card-text text-muted flex-grow-1 small">
+                            <p class="card-text flex-grow-1 small" style="color: var(--text-muted);">
                                 Responsive user interface layouts built inside Figma using dynamic autolayout grids focused on clean design frameworks.
                             </p>
                             <div class="mt-3">
-                                <span class="badge bg-dark text-info me-1 small">Figma</span>
-                                <span class="badge bg-dark text-info small">UI/UX</span>
+                                <span class="badge bg-dark text-white me-1 small" style="border: 1px solid rgba(255,255,255,0.1);">Figma</span>
+                                <span class="badge bg-dark text-white small" style="border: 1px solid rgba(255,255,255,0.1);">UI/UX</span>
                             </div>
                         </div>
                     </div>
@@ -308,21 +410,23 @@
                 Have an interesting idea, a project collaboration, or just want to discuss tech and design trends? Drop a line!
             </p>
             <div class="custom-card p-5">
-                <form action="#" method="POST" onsubmit="alert('Message feature simulated!'); return false;">
-                    <div class="mb-4 text-start">
-                        <label for="name" class="form-label small text-muted">Name</label>
-                        <input type="text" class="form-control bg-dark text-white border-secondary" id="name" required placeholder="Your Name">
-                    </div>
-                    <div class="mb-4 text-start">
-                        <label for="email" class="form-label small text-muted">Email Address</label>
-                        <input type="email" class="form-control bg-dark text-white border-secondary" id="email" required placeholder="name@example.com">
-                    </div>
-                    <div class="mb-4 text-start">
-                        <label for="message" class="form-label small text-muted">Message</label>
-                        <textarea class="form-control bg-dark text-white border-secondary" id="message" rows="4" required placeholder="Let's build something..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-info w-100 text-dark fw-semibold" style="background-color: var(--accent-neon);">Send Message</button>
-                </form>
+                <div class="card-body p-0">
+                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID_HERE" method="POST" onsubmit="alert('Message simulation complete! Set up a Formspree ID to receive real emails.'); return false;">
+                        <div class="mb-4 text-start">
+                            <label for="name" class="form-label small text-muted">Name</label>
+                            <input type="text" class="form-control" id="name" required placeholder="Your Name">
+                        </div>
+                        <div class="mb-4 text-start">
+                            <label for="email" class="form-label small text-muted">Email Address</label>
+                            <input type="email" class="form-control" id="email" required placeholder="name@example.com">
+                        </div>
+                        <div class="mb-4 text-start">
+                            <label for="message" class="form-label small text-muted">Message</label>
+                            <textarea class="form-control" id="message" rows="4" required placeholder="Let's build something..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient w-100 text-dark fw-semibold">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -330,11 +434,12 @@
     <footer class="py-4 text-center">
         <div class="container">
             <div class="mb-3">
-                <a href="#" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="mailto:arpitatanwani28@gmail.com" class="social-icon" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://www.instagram.com/_arpita_tanwani_" target="_blank" class="social-icon insta" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
-            <p class="text-muted small mb-0">&copy; 2026 Arpita. Built with Bootstrap 5.</p>
+            <p class="small mb-0" style="color: var(--text-muted);">&copy; 2026 Arpita. Built with Bootstrap 5.</p>
         </div>
     </footer>
 
